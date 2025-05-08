@@ -1,8 +1,45 @@
-# openpaws
+# OpenPaws: Open-Source Quadruped Robotic Pet Framework
+
+OpenPaw is an open-source framework designed for building Field Oriented Control (FOC) motor-based quadruped robotic pets. This project focuses on delivering low-cost, modular, and cross-platform solutions in both software and hardware to robotics enthusiasts and developers.
+
+## Our Philosophy
+
+OpenPaw is a project created by and for the open-source community. We believe in the principles of transparency, collaboration, and innovation. By sharing our work, we hope to contribute to the growth of the robotics ecosystem and empower others to build upon it.
+
+## RoadMap
+Mechanical Design
+Control Software ROS1
+Control Software ROS2
+
+## Installation
+
+### Step 1: Complie
+```bash
+git clone https://github.com/yourusername/openpaws.git
+cd openpaws/software/ROS1
 catkin_make
 
+### Step 2: Run Simulations
 source devel/setup.bash
 roslaunch openpaws_config gazebo.launch
 
+### Step 3: Run Simulations
+open another teminal
 source devel/setup.bash
 roslaunch openpaws_teleop teleop.launch
+```
+
+## Community
+Join our community to share ideas, ask questions, and collaborate:  
+- [Discord Channel]
+- [QQ:760101443]
+
+## License
+OpenPaw is licensed under the MIT License. See `LICENSE` for more details.
+
+## Acknowledgments
+Some code and design are borrowed from following projects:  
+[Cheetah](https://github.com/mit-biomimetics/Cheetah-Software)  
+[Champ](https://github.com/chvmp/champ)  
+[3D model Design](https://oshwhub.com/gulu666/detector-disaster-scene-3d-reconstruction-robot-dog)  
+Thanks for their contributions!
