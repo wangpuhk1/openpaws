@@ -32,7 +32,7 @@ include_directories(
   ${openpaws_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
   ${GAZEBO_INCLUDE_DIRS}
-  ${PROJECT_SOURCE_DIR}/../third_party
+  ${PROJECT_SOURCE_DIR}/../openpaws
 )
 
 link_directories(${GAZEBO_LIBRARY_DIRS} ${catkin_LIBRARIES})

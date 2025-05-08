@@ -201,7 +201,7 @@ CTRL-C to quit
         return "currently:\tspeed %s\tturn %s " % (speed,turn)
 
     def map(self, x, in_min, in_max, out_min, out_max):
-        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+        return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min
 
 if __name__ == "__main__":
     rospy.init_node('openpaws_teleop')
