@@ -1,0 +1,46 @@
+<launch>
+    <!-- 加载机器人描述 -->
+    <param name="robot_description" 
+           textfile="$(find openpaws_description)/urdf/openpaws.urdf" />
+
+    <!-- 启动 Gazebo -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch">
+        <arg name="paused" value="true"/>
+        <arg name="use_sim_time" value="true"/>
+        <arg name="gui" value="true"/>
+    </include>
+
+    <!-- 加载控制器配置 -->
+    <rosparam command="load" 
+              file="$(find openpaws_config)/config/ros_control/ros_control.yaml" />
+
+    <!-- 生成半蹲状态的机器人模型 -->
+    <node name="spawn_urdf" pkg="gazebo_ros" type="spawn_model"
+          args="-urdf 
+                -param robot_description 
+                -model openpaws
+                -z 0.25
+                -J lf_hip_joint 0.0
+                -J lf_upper_leg_joint 1.0
+                -J lf_lower_leg_joint -2.0
+                -J rf_hip_joint 0.0
+                -J rf_upper_leg_joint 1.0
+                -J rf_lower_leg_joint -2.0
+                -J lh_hip_joint 0.0
+                -J lh_upper_leg_joint 1.0
+                -J lh_lower_leg_joint -2.0
+                -J rh_hip_joint 0.0
+                -J rh_upper_leg_joint 1.0
+                -J rh_lower_leg_joint -2.0"
+          output="screen" />
+
+    <!-- 启动控制器 -->
+    <node name="controller_spawner" pkg="controller_manager" type="spawner"
+          respawn="false" output="screen"
+          args="joint_state_controller
+                joint_group_position_controller"/>
+
+    <!-- 启动机器人状态发布器 -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" 
+          type="robot_state_publisher" />
+</launch>
