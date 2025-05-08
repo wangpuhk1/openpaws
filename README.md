@@ -6,6 +6,16 @@ OpenPaw is an open-source framework designed for building Field Oriented Control
 
 OpenPaw is a project created by and for the open-source community. We believe in the principles of transparency, collaboration, and innovation. By sharing our work, we hope to contribute to the growth of the robotics ecosystem and empower others to build upon it.
 
+
+
+## Mechanical Design
+
+##### Leg Assembled
+
+<video width="300" height="200" autoplay="true" src="https://github.com/user-attachments/assets/0310e957-bd4b-4fca-84c4-60ede9ea3b31"></video>
+
+
+
 ## Installation
 
 ## Step 1: Build ROS Workspace
@@ -31,6 +41,10 @@ cd openpaws/software/ROS1
 source devel/setup.bash  # Load ROS environment variables
 roslaunch openpaws_config gazebo.launch
 ```
+
+## 
+
+![](C:\Users\puwan\AppData\Roaming\marktext\images\2025-05-08-16-18-30-3386aa39acff4b17c57e31fe2d3e5e8c.png)
 
 ## Step 3: Start Teleoperation (New Terminal)
 
