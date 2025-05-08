@@ -7,14 +7,15 @@ OpenPaw is an open-source framework designed for building Field Oriented Control
 OpenPaw is a project created by and for the open-source community. We believe in the principles of transparency, collaboration, and innovation. By sharing our work, we hope to contribute to the growth of the robotics ecosystem and empower others to build upon it.
 
 ## RoadMap
+
 Mechanical Design
 Control Software ROS1
 Control Software ROS2
 
 ## Installation
 
-### Step 1: Complie
 ```bash
+### Step 1: Compile
 git clone https://github.com/yourusername/openpaws.git
 cd openpaws/software/ROS1
 catkin_make
@@ -23,21 +24,25 @@ catkin_make
 source devel/setup.bash
 roslaunch openpaws_config gazebo.launch
 
-### Step 3: Run Simulations
+### Step 3: Run Teleoperation
 open another teminal
 source devel/setup.bash
 roslaunch openpaws_teleop teleop.launch
 ```
 
 ## Community
+
 Join our community to share ideas, ask questions, and collaborate:  
+
 - [Discord Channel]
 - [QQ:760101443]
 
 ## License
+
 OpenPaw is licensed under the MIT License. See `LICENSE` for more details.
 
 ## Acknowledgments
+
 Some code and design are borrowed from following projects:  
 [Cheetah](https://github.com/mit-biomimetics/Cheetah-Software)  
 [Champ](https://github.com/chvmp/champ)  
