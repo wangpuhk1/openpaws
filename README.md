@@ -46,6 +46,8 @@ roslaunch openpaws_config gazebo.launch
 
 ![](C:\Users\puwan\AppData\Roaming\marktext\images\2025-05-08-16-18-30-3386aa39acff4b17c57e31fe2d3e5e8c.png)
 
+## 
+
 ## Step 3: Start Teleoperation (New Terminal)
 
 ```bash
@@ -55,7 +57,21 @@ source devel/setup.bash  # Re-source environment
 roslaunch openpaws_teleop teleop.launch  # Activate control interface
 ```
 
-## ## Community
+
+
+## Step 4: Hardware Integration
+
+Create a hardware interface for your actuators that is able to do the following:
+
+- Subscribe to [trajectory_msgs/JointTrajectory](http://docs.ros.org/melodic/api/trajectory_msgs/html/msg/JointTrajectory.html) . This ROS message contains the joint angles (12DOF) that the actuators can use to move the robot.
+
+- Publish all the actuators' current angle using [sensor_msgs/JointState](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/JointState.html) to 'joint_states' topic.
+
+- Control the actuators and read its angle (optional) programmatically.
+
+
+
+## Community
 
 Join our community to share ideas, ask questions, and collaborate:  
 
