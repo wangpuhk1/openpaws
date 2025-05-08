@@ -1,6 +1,6 @@
 # OpenPaws: Open-Source Quadruped Robotic Pet Framework
 
-OpenPaw is an open-source framework designed for building Field Oriented Control (FOC) motor-based quadruped robotic pets. This project focuses on delivering low-cost, modular, and cross-platform solutions in both software and hardware to robotics enthusiasts and developers.
+OpenPaws is an open-source framework designed for building Field Oriented Control (FOC) motor-based quadruped robotic pets. This project focuses on delivering low-cost, modular, and cross-platform solutions in both software and hardware to robotics enthusiasts and developers.
 
 ## Our Philosophy
 
@@ -8,9 +8,7 @@ OpenPaw is a project created by and for the open-source community. We believe in
 
 
 
-## Mechanical Design
-
-##### Leg Assembled
+## Leg Assembled
 
 <video width="300" height="200" autoplay="true" src="https://github.com/user-attachments/assets/0310e957-bd4b-4fca-84c4-60ede9ea3b31"></video>
 
