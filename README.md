@@ -40,7 +40,8 @@ source devel/setup.bash  # Load ROS environment variables
 roslaunch openpaws_config gazebo.launch
 ```
 
-![](C:\Users\puwan\Documents\Tencent%20Files\240221142\nt_qq\nt_data\Pic\2025-05\Ori\3386aa39acff4b17c57e31fe2d3e5e8c.png)##
+![3386aa39acff4b17c57e31fe2d3e5e8c](https://github.com/user-attachments/assets/9773d29b-20ca-413f-8ad3-1bb63ef0e7b7)
+
 
 ## Step 3: Start Teleoperation (New Terminal)
 
