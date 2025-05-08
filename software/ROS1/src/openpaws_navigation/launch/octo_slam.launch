@@ -1,9 +1,0 @@
-<launch>
-    <arg name="sensor" default="velodyne" />
-    
-    <include file="$(find openpaws_navigation)/launch/slam/octomap.launch" >
-        <arg name="sensor" value="$(arg sensor)" />
-    </include>
-
-    <include file="$(find openpaws_navigation)/launch/navigation/move_base.launch" />
-</launch>
