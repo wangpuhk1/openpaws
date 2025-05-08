@@ -1,4 +1,4 @@
-# OpenPaws: Open-Source Quadruped Robotic Pet Framework
+# OpenPaws: Open-Source Quadruped Robotic Framework
 
 OpenPaws is an open-source framework designed for building Field Oriented Control (FOC) motor-based quadruped robotic pets. This project focuses on delivering low-cost, modular, and cross-platform solutions in both software and hardware to robotics enthusiasts and developers.
 
@@ -6,13 +6,9 @@ OpenPaws is an open-source framework designed for building Field Oriented Contro
 
 OpenPaw is a project created by and for the open-source community. We believe in the principles of transparency, collaboration, and innovation. By sharing our work, we hope to contribute to the growth of the robotics ecosystem and empower others to build upon it.
 
-
-
 ## Leg Assembled
 
 <video width="300" height="200" autoplay="true" src="https://github.com/user-attachments/assets/0310e957-bd4b-4fca-84c4-60ede9ea3b31"></video>
-
-
 
 ## Installation
 
@@ -42,7 +38,6 @@ roslaunch openpaws_config gazebo.launch
 
 ![3386aa39acff4b17c57e31fe2d3e5e8c](https://github.com/user-attachments/assets/9773d29b-20ca-413f-8ad3-1bb63ef0e7b7)
 
-
 ## Step 3: Start Teleoperation (New Terminal)
 
 ```bash
@@ -51,8 +46,6 @@ cd openpaws/software/ROS1
 source devel/setup.bash  # Re-source environment
 roslaunch openpaws_teleop teleop.launch  # Activate control interface
 ```
-
-
 
 ## Step 4: Hardware Integration
 
@@ -63,8 +56,6 @@ Create a hardware interface for your actuators that is able to do the following:
 - Publish all the actuators' current angle using [sensor_msgs/JointState](http://docs.ros.org/melodic/api/sensor_msgs/html/msg/JointState.html) to 'joint_states' topic.
 
 - Control the actuators and read its angle (optional) programmatically.
-
-
 
 ## Community
 
