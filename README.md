@@ -6,31 +6,42 @@ OpenPaw is an open-source framework designed for building Field Oriented Control
 
 OpenPaw is a project created by and for the open-source community. We believe in the principles of transparency, collaboration, and innovation. By sharing our work, we hope to contribute to the growth of the robotics ecosystem and empower others to build upon it.
 
-## RoadMap
-
-Mechanical Design
-Control Software ROS1
-Control Software ROS2
-
 ## Installation
 
+## Step 1: Build ROS Workspace
+
 ```bash
-### Step 1: Compile
-git clone https://github.com/yourusername/openpaws.git
+# Clone repository
+git clone https://github.com/wangpuhk1/openpaws.git
+
+source /opt/ros/melodic/setup.bash
+
+# Navigate to ROS workspace
 cd openpaws/software/ROS1
+
+# Initialize and build packages
 catkin_make
-
-### Step 2: Run Simulations
-source devel/setup.bash
-roslaunch openpaws_config gazebo.launch
-
-### Step 3: Run Teleoperation
-open another teminal
-source devel/setup.bash
-roslaunch openpaws_teleop teleop.launch
 ```
 
-## Community
+## Step 2: Launch Gazebo Simulation
+
+```bash
+# Source environment and launch simulation
+cd openpaws/software/ROS1
+source devel/setup.bash  # Load ROS environment variables
+roslaunch openpaws_config gazebo.launch
+```
+
+## Step 3: Start Teleoperation (New Terminal)
+
+```bash
+# In separate terminal session
+cd openpaws/software/ROS1
+source devel/setup.bash  # Re-source environment
+roslaunch openpaws_teleop teleop.launch  # Activate control interface
+```
+
+## ## Community
 
 Join our community to share ideas, ask questions, and collaborate:  
 
