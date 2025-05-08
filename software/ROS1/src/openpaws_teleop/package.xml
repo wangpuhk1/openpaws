@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package>
+    <name>openpaws_teleop</name>
+    <version>0.6.2</version>
+    <description>Generic keyboard teleop for twist robots.</description>
+
+    <maintainer email="xxxxx@xxxxx.com">xxxxxxx</maintainer>
+
+    <license>BSD</license>
+
+    <url type="website"></url>
+
+    <author>xxxxx</author>
+
+    <buildtool_depend>catkin</buildtool_depend>
+
+    <run_depend>geometry_msgs</run_depend>
+    <run_depend>joy</run_depend>
+    <run_depend>rospy</run_depend>
+    <run_depend>sensor_msgs</run_depend>
+</package>

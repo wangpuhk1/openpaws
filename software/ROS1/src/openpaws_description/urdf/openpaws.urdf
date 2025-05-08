@@ -1,0 +1,1381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="openpaws_description">
+<!-- Base Link -->
+  <link
+    name="base_link">
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.27 0.17 0.08"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/base_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <link name="base_inertia">
+    <inertial>
+      <origin
+        xyz="-0.00018141 3.9183E-05 0.00029607"
+        rpy="0 0 0" />
+      <mass value="3.55"/>
+      <inertia ixx="0.001113" iyy="0.002369" izz="0.003094" ixy="0" ixz="0" iyz="0"/>
+      <!-- <mass
+        value="0.69223" />
+      <inertia
+        ixx="0.00073815"
+        ixy="-6.5961E-07"
+        ixz="-9.0799E-09"
+        iyy="0.0010335"
+        iyz="-1.3086E-07"
+        izz="0.0011626" /> -->
+    </inertial>
+  </link>
+  <joint name="base_link_to_base_inertia" type="fixed">
+    <parent link="base_link"/>
+    <child link="base_inertia"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+  </joint>
+  <gazebo reference="base_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>
+  </gazebo>
+<!-- IMU -->
+  <gazebo>
+    <plugin filename="libhector_gazebo_ros_imu.so" name="imu_controller">
+      <updateRate>50.0</updateRate>
+      <bodyName>imu_link</bodyName>
+      <topicName>imu/data</topicName>
+      <accelDrift>0.005 0.005 0.005</accelDrift>
+      <accelGaussianNoise>0.005 0.005 0.005</accelGaussianNoise>
+      <rateDrift>0.005 0.005 0.005 </rateDrift>
+      <rateGaussianNoise>0.005 0.005 0.005 </rateGaussianNoise>
+      <headingDrift>0.005</headingDrift>
+      <headingGaussianNoise>0.005</headingGaussianNoise>
+    </plugin>
+  </gazebo>
+  <link name="imu_link">
+    <inertial>
+      <mass value="0.001"/>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <inertia ixx="0.0001" ixy="0" ixz="0" iyy="0.0001" iyz="0" izz="0.0001"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size="0.001 0.001 0.001"/>
+      </geometry>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <box size=".001 .001 .001"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="imu_joint" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin rpy="0 0 0" xyz="0 0 0.03"/>
+  </joint>
+
+<!-- Left Front leg -->
+  <link
+    name="lf_hip_link">
+    <inertial>
+      <!-- <origin
+        xyz="-0.0019983 -0.0011206 -0.00012665"
+        rpy="0 0 0" />
+      <mass
+        value="0.12065" />
+      <inertia
+        ixx="4.4258E-05"
+        ixy="-7.5679E-08"
+        ixz="3.6198E-07"
+        iyy="7.6774E-05"
+        iyz="9.0227E-09"
+        izz="4.3197E-05" /> -->
+      <origin
+        xyz="-0.0005276 -0.00109 -0.00013426"
+        rpy="0 0 0" />
+      <mass
+        value="0.313" />
+      <inertia
+        ixx="0.00012626"
+        ixy="0.00000026"
+        ixz="-0.00000132"
+        iyy="0.00021411"
+        iyz="0.00000009"
+        izz="0.00013665" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lf_hip_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder length="0.035" radius="0.04"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/lf_hip_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="lf_hip_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="lf_hip_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0.18082 0.045002 -0.00025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lf_hip_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.68"
+      upper="0.68"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="lf_upper_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="0.00020023 -0.018818 -0.018458"
+        rpy="0 0 0" />
+      <mass
+        value="0.20863" />
+      <inertia
+        ixx="0.00011971"
+        ixy="-1.8179E-08"
+        ixz="-4.4273E-07"
+        iyy="0.00018631"
+        iyz="2.143E-06"
+        izz="8.7924E-05" /> -->
+      <origin
+        xyz="0.000258 -0.02363594 -0.0091742"
+        rpy="0 0 0" />
+      <mass value="0.463"/>
+      <inertia 
+          ixx="0.00091440" 
+          ixy="-0.00000337" 
+          ixz="0.00000146" 
+          iyy="0.00070907" 
+          iyz="-0.00000095" 
+          izz="0.00053267"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lf_upper_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lf_upper_leg_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="lf_upper_leg_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="lf_upper_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0 0.068899 0"
+      rpy="0 0 0" />
+    <parent
+      link="lf_hip_link" />
+    <child
+      link="lf_upper_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.3264"
+      upper="2.7925"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="lf_lower_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="0 0 -0.078428"
+        rpy="0 0 0" />
+      <mass
+        value="0.047074" />
+      <inertia
+        ixx="3.0882E-05"
+        ixy="-3.6853E-11"
+        ixz="2.2026E-07"
+        iyy="3.2931E-05"
+        iyz="-4.6457E-10"
+        izz="5.6472E-06" /> -->
+      <!-- <mass value="0.2"/>
+      <inertia 
+          ixx="0.00015" 
+          ixy="0" 
+          ixz="0" 
+          iyy="0.00015" 
+          iyz="0" 
+          izz="0.00002"/> -->
+      <origin
+        xyz="0.00068626 0.00003472 -0.07842768"
+        rpy="0 0 0" />
+      <mass value="0.05"/>
+      <inertia 
+          ixx="0.00053484" 
+          ixy="0" 
+          ixz="-0.00000461" 
+          iyy="0.00053705" 
+          iyz="0" 
+          izz="0.00000604"/>          
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lf_lower_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 -0.0725"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.15"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/lf_lower_leg_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="lf_lower_leg_link">
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>  
+  <joint
+    name="lf_lower_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0.00025731 0 -0.153"
+      rpy="0 0 0" />
+    <parent
+      link="lf_upper_leg_link" />
+    <child
+      link="lf_lower_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.5307"
+      upper="0"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link name="lf_foot_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.009"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="lf_foot_joint" type="fixed">
+    <parent link="lf_lower_leg_link"/>
+    <child link="lf_foot_link"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.15"/>
+  </joint>  
+  <gazebo reference="lf_foot_link">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="50000.0"/>
+    <kd value="5000.0"/>
+  </gazebo>
+  <!-- <gazebo reference="lf_foot_link">
+    <sensor name="lf_foot_contact" type="contact">
+      <always_on>true</always_on>
+      <update_rate>100.0</update_rate>
+      <plugin name="lf_foot_bumper" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>lf_foot_contacts</bumperTopicName>
+        <frameName>lf_foot_link</frameName>
+      </plugin>      
+      <contact>
+        <collision>lf_foot_link_collision</collision>
+      </contact>
+    </sensor>
+  </gazebo>   -->
+  <transmission name="lf_hip_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lf_hip_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lf_upper_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_upper_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lf_upper_leg_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lf_lower_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lf_lower_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lf_lower_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+<!-- Left Hind Leg -->
+  <link
+    name="lh_hip_link">
+    <inertial>
+      <!-- <origin
+        xyz="0.0019984 -0.0011159 0.00012665"
+        rpy="0 0 0" />
+      <mass
+        value="0.12065" />
+      <inertia
+        ixx="4.4258E-05"
+        ixy="7.4177E-08"
+        ixz="3.6198E-07"
+        iyy="7.6774E-05"
+        iyz="-9.006E-09"
+        izz="4.3197E-05" /> -->
+      <origin
+        xyz="0.0005276 -0.00109 0.00013426"
+        rpy="0 0 0" />
+      <mass
+        value="0.313" />
+      <inertia
+        ixx="0.00012626"
+        ixy="-0.00000025"
+        ixz="-0.00000132"
+        iyy="0.00021411"
+        iyz="-0.00000009"
+        izz="0.00013665" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lh_hip_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder length="0.035" radius="0.04"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/lh_hip_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="lh_hip_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>
+  </gazebo>  
+  <joint
+    name="lh_hip_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="-0.18082 0.044993 -0.00025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="lh_hip_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.68"
+      upper="0.68"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="lh_upper_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="0.00020002 -0.018818 -0.018458"
+        rpy="0 0 0" />
+      <mass
+        value="0.20863" />
+      <inertia
+        ixx="0.00011971"
+        ixy="-1.8156E-08"
+        ixz="-4.4308E-07"
+        iyy="0.00018631"
+        iyz="2.143E-06"
+        izz="8.7924E-05" /> -->
+      <origin
+        xyz="0.000258 -0.02363594 -0.0091742"
+        rpy="0 0 0" />
+      <mass value="0.463"/>
+      <inertia 
+          ixx="0.00091440" 
+          ixy="-0.00000337" 
+          ixz="0.00000146" 
+          iyy="0.00070907" 
+          iyz="-0.00000095" 
+          izz="0.00053267"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lh_upper_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lh_upper_leg_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="lh_upper_leg_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="lh_upper_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0 0.068904 0"
+      rpy="0 0 0" />
+    <parent
+      link="lh_hip_link" />
+    <child
+      link="lh_upper_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.9773"
+      upper="3.1415"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="lh_lower_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="0 0 -0.078428"
+        rpy="0 0 0" />
+      <mass
+        value="0.047074" />
+      <inertia
+        ixx="3.0882E-05"
+        ixy="-3.6859E-11"
+        ixz="2.2026E-07"
+        iyy="3.2931E-05"
+        iyz="-4.6457E-10"
+        izz="5.6472E-06" /> -->
+      <!-- <mass value="0.2"/>
+      <inertia 
+          ixx="0.00015" 
+          ixy="0" 
+          ixz="0" 
+          iyy="0.00015" 
+          iyz="0" 
+          izz="0.00002"/> -->
+      <origin
+        xyz="0.00068626 0.00003472 -0.07842768"
+        rpy="0 0 0" />    
+      <mass value="0.05"/>
+      <inertia 
+          ixx="0.00053484" 
+          ixy="0" 
+          ixz="-0.00000461" 
+          iyy="0.00053705" 
+          iyz="0" 
+          izz="0.00000604"/>           
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/lh_lower_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 -0.0725"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.15"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/lh_lower_leg_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="lh_lower_leg_link">
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>  
+  <joint
+    name="lh_lower_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0.00025564 0 -0.153"
+      rpy="0 0 0" />
+    <parent
+      link="lh_upper_leg_link" />
+    <child
+      link="lh_lower_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.5307"
+      upper="0"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link name="lh_foot_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.009"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="lh_foot_joint" type="fixed">
+    <parent link="lh_lower_leg_link"/>
+    <child link="lh_foot_link"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.15"/>
+  </joint>
+  <gazebo reference="lh_foot_link">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="50000.0"/>
+    <kd value="5000.0"/>
+  </gazebo>
+  <!-- <gazebo reference="lh_foot_link">
+    <sensor name="lh_foot_contact" type="contact">
+      <always_on>true</always_on>
+      <update_rate>100.0</update_rate>
+      <plugin name="lh_foot_bumper" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>lh_foot_contacts</bumperTopicName>
+        <frameName>lh_foot_link</frameName>
+      </plugin>       
+      <contact>
+        <collision>lh_foot_link_collision</collision>
+      </contact>
+    </sensor>
+  </gazebo>     -->
+  <transmission name="lh_hip_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lh_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lh_hip_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lh_upper_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lh_upper_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lh_upper_leg_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="lh_lower_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="lh_lower_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="lh_lower_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>  
+<!-- Right Front leg -->  
+  <link
+    name="rf_hip_link">
+    <inertial>
+      <!-- <origin
+        xyz="-0.0019984 0.0011181 0.00012665"
+        rpy="0 0 0" />
+      <mass
+        value="0.12065" />
+      <inertia
+        ixx="4.4258E-05"
+        ixy="7.4177E-08"
+        ixz="-3.6198E-07"
+        iyy="7.6774E-05"
+        iyz="9.006E-09"
+        izz="4.3197E-05" /> -->
+      <origin
+        xyz="0.0005276 -0.00109 0.00013426"
+        rpy="0 0 0" />
+      <mass
+        value="0.313" />
+      <inertia
+        ixx="0.00012626"
+        ixy="-0.00000025"
+        ixz="0.00000132"
+        iyy="0.00021411"
+        iyz="0.00000009"
+        izz="0.00013665" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rf_hip_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder length="0.035" radius="0.04"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/rf_hip_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="rf_hip_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="rf_hip_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0.18082 -0.044998 -0.00025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rf_hip_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.68"
+      upper="0.68"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="rf_upper_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="-0.00020002 0.018818 -0.018458"
+        rpy="0 0 0" />
+      <mass
+        value="0.20863" />
+      <inertia
+        ixx="0.00011971"
+        ixy="-1.8156E-08"
+        ixz="4.4308E-07"
+        iyy="0.00018631"
+        iyz="-2.143E-06"
+        izz="8.7924E-05" /> -->
+      <origin
+        xyz="-0.000258 0.02363594 -0.0091742"
+        rpy="0 0 0" />
+      <mass value="0.463"/>
+      <inertia 
+          ixx="0.00091440" 
+          ixy="-0.00000337" 
+          ixz="-0.00000146" 
+          iyy="0.00070907" 
+          iyz="0.00000095" 
+          izz="0.00053267"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rf_upper_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rf_upper_leg_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="rf_upper_leg_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="rf_upper_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0 -0.068901 0"
+      rpy="0 0 0" />
+    <parent
+      link="rf_hip_link" />
+    <child
+      link="rf_upper_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.3264"
+      upper="2.7925"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="rf_lower_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="0 0 -0.078428"
+        rpy="0 0 0" />
+      <mass
+        value="0.047074" />
+      <inertia
+        ixx="3.0882E-05"
+        ixy="-3.6858E-11"
+        ixz="2.2026E-07"
+        iyy="3.2931E-05"
+        iyz="-4.6457E-10"
+        izz="5.6472E-06" /> -->
+      <!-- <mass value="0.2"/>
+      <inertia 
+          ixx="0.00015" 
+          ixy="0" 
+          ixz="0" 
+          iyy="0.00015" 
+          iyz="0" 
+          izz="0.00002"/> -->
+      <origin
+        xyz="0.00017331 0.00003471 -0.07842768"
+        rpy="0 0 0" />          
+      <mass value="0.05"/>
+      <inertia 
+          ixx="0.00053484" 
+          ixy="0" 
+          ixz="-0.00000260" 
+          iyy="0.00053703" 
+          iyz="0" 
+          izz="0.00000601"/>           
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rf_lower_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 -0.0725"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.15"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/rf_lower_leg_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="rf_lower_leg_link">
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>  
+  <joint
+    name="rf_lower_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0.00025731 0 -0.153"
+      rpy="0 0 0" />
+    <parent
+      link="rf_upper_leg_link" />
+    <child
+      link="rf_lower_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.5307"
+      upper="0"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link name="rf_foot_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.009"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>
+  <joint name="rf_foot_joint" type="fixed">
+    <parent link="rf_lower_leg_link"/>
+    <child link="rf_foot_link"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.15"/>
+  </joint>
+  <gazebo reference="rf_foot_link">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="50000.0"/>
+    <kd value="5000.0"/>
+  </gazebo>    
+  <!-- <gazebo reference="rf_foot_link">
+    <sensor name="rf_foot_contact" type="contact">
+      <always_on>true</always_on>
+      <update_rate>100.0</update_rate>
+      <plugin name="rf_foot_bumper" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>rf_foot_contacts</bumperTopicName>
+        <frameName>rf_foot_link</frameName>
+      </plugin>       
+      <contact>
+        <collision>rf_foot_link_collision</collision>
+      </contact>
+    </sensor>
+  </gazebo>     -->
+  <transmission name="rf_hip_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rf_hip_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rf_upper_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_upper_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rf_upper_leg_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rf_lower_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rf_lower_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rf_lower_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>  
+<!-- Right Hind Leg -->
+  <link
+    name="rh_hip_link">
+    <inertial>
+      <!-- <origin
+        xyz="0.0019983 0.0011229 -0.00012665"
+        rpy="0 0 0" />
+      <mass
+        value="0.12065" />
+      <inertia
+        ixx="4.4258E-05"
+        ixy="-7.5679E-08"
+        ixz="-3.6198E-07"
+        iyy="7.6774E-05"
+        iyz="-9.0227E-09"
+        izz="4.3197E-05" /> -->
+      <origin
+        xyz="0.0005276 -0.00109 0.00013426"
+        rpy="0 0 0" />
+      <mass
+        value="0.313" />
+      <inertia
+        ixx="0.00012626"
+        ixy="0.00000026"
+        ixz="0.00000132"
+        iyy="0.00021411"
+        iyz="-0.00000009"
+        izz="0.00013666" />        
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rh_hip_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="1.57079632679 0 0" />
+      <geometry>
+        <cylinder length="0.035" radius="0.04"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/rh_hip_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="rh_hip_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="rh_hip_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="-0.18082 -0.045007 -0.00025"
+      rpy="0 0 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="rh_hip_link" />
+    <axis
+      xyz="1 0 0" />
+    <limit
+      lower="-0.68"
+      upper="0.68"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="rh_upper_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="-0.00020002 0.018818 -0.018458"
+        rpy="0 0 0" />
+      <mass
+        value="0.20863" />
+      <inertia
+        ixx="0.00011971"
+        ixy="-1.8156E-08"
+        ixz="4.4308E-07"
+        iyy="0.00018631"
+        iyz="-2.143E-06"
+        izz="8.7924E-05" /> -->
+      <origin
+        xyz="-0.000258 0.02363594 -0.0091742"
+        rpy="0 0 0" />
+      <mass value="0.463"/>
+      <inertia 
+          ixx="0.00091440" 
+          ixy="-0.00000337" 
+          ixz="-0.00000146" 
+          iyy="0.00070907" 
+          iyz="0.00000095" 
+          izz="0.00053267"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rh_upper_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rh_upper_leg_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="rh_upper_leg_link">
+    <material>Gazebo/FlatBlack</material>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>    
+  </gazebo>  
+  <joint
+    name="rh_upper_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0 -0.068897 0"
+      rpy="0 0 0" />
+    <parent
+      link="rh_hip_link" />
+    <child
+      link="rh_upper_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-0.9773"
+      upper="3.1415"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link
+    name="rh_lower_leg_link">
+    <inertial>
+      <!-- <origin
+        xyz="0 0 -0.078428"
+        rpy="0 0 0" />
+      <mass
+        value="0.047074" />
+      <inertia
+        ixx="3.0882E-05"
+        ixy="-3.6854E-11"
+        ixz="2.2026E-07"
+        iyy="3.2931E-05"
+        iyz="-4.6457E-10"
+        izz="5.6472E-06" /> -->
+      <!-- <mass value="0.2"/>
+      <inertia 
+          ixx="0.00015" 
+          ixy="0" 
+          ixz="0" 
+          iyy="0.00015" 
+          iyz="0" 
+          izz="0.00002"/> -->
+      <origin
+        xyz="0.00017498 0.00003471 -0.07842768"
+        rpy="0 0 0" />          
+      <mass value="0.05"/>
+      <inertia 
+          ixx="0.00053484" 
+          ixy="0" 
+          ixz="-0.00000261" 
+          iyy="0.00053703" 
+          iyz="0" 
+          izz="0.00000601"/>
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://openpaws_description/meshes/rh_lower_leg_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 -0.0725"
+        rpy="0 0 0" />
+      <geometry>
+        <box size="0.02 0.02 0.15"/>
+        <!-- <mesh
+          filename="package://openpaws_description/meshes/rh_lower_leg_link.STL" /> -->
+      </geometry>
+    </collision>
+  </link>
+  <gazebo reference="rh_lower_leg_link">
+    <kp>50000.0</kp>
+    <kd>5000.0</kd>
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <maxVel>0.0</maxVel>
+    <minDepth>0.001</minDepth>
+    <material>Gazebo/FlatBlack</material>
+  </gazebo>  
+  <joint
+    name="rh_lower_leg_joint"
+    type="revolute">
+    <dynamics damping="0.3" friction="0.3"/>
+    <origin
+      xyz="0.00025564 0 -0.153"
+      rpy="0 0 0" />
+    <parent
+      link="rh_upper_leg_link" />
+    <child
+      link="rh_lower_leg_link" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-2.5307"
+      upper="0"
+      effort="12"
+      velocity="30.997" />
+  </joint>
+  <link name="rh_foot_link">
+    <visual>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.009"/>
+      </geometry>
+      <material name="orange"/>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <sphere radius="0.019"/>
+      </geometry>
+    </collision>
+  </link>  
+  <joint name="rh_foot_joint" type="fixed">
+    <parent link="rh_lower_leg_link"/>
+    <child link="rh_foot_link"/>
+    <origin rpy="0 0 0" xyz="0 0 -0.15"/>
+  </joint>
+  <gazebo reference="rh_foot_link">
+    <mu1>0.8</mu1>
+    <mu2>0.8</mu2>
+    <material>Gazebo/DarkGrey</material>
+    <kp value="50000.0"/>
+    <kd value="5000.0"/>
+  </gazebo>
+  <!-- <gazebo reference="rh_foot_link">
+    <sensor name="rh_foot_contact" type="contact">
+      <always_on>true</always_on>
+      <update_rate>100.0</update_rate>
+      <plugin name="rh_foot_bumper" filename="libgazebo_ros_bumper.so">
+        <bumperTopicName>rh_foot_contacts</bumperTopicName>
+        <frameName>rh_foot_link</frameName>
+      </plugin>       
+      <contact>
+        <collision>rh_foot_link_collision</collision>
+      </contact>
+    </sensor>
+  </gazebo>     -->
+  <transmission name="rh_hip_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rh_hip_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rh_hip_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rh_upper_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rh_upper_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rh_upper_leg_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <transmission name="rh_lower_leg_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="rh_lower_leg_joint">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="rh_lower_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>7.75</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <gazebo>
+    <plugin filename="libgazebo_ros_p3d.so" name="p3d_base_controller">
+      <alwaysOn>true</alwaysOn>
+      <updateRate>10.0</updateRate>
+      <bodyName>base_link</bodyName>
+      <topicName>odom/ground_truth</topicName>
+      <gaussianNoise>0.01</gaussianNoise>
+      <frameName>world</frameName>
+      <xyzOffsets>0 0 0</xyzOffsets>
+      <rpyOffsets>0 0 0</rpyOffsets>
+    </plugin>
+  </gazebo>
+  <gazebo>
+    <plugin filename="libgazebo_ros_control.so" name="gazebo_ros_control">
+      <legacyModeNS>true</legacyModeNS>
+    </plugin>
+  </gazebo>  
+</robot>
