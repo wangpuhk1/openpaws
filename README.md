@@ -8,7 +8,7 @@ OpenPaw is a project created by and for the open-source community. We believe in
 
 ## Leg Assembled
 
-<video width="300" height="200" autoplay="true" src="https://github.com/user-attachments/assets/bd47f27d-9aae-4291-96b1-75f8b6b39cad"></video>
+<video width="600" height="400" autoplay="true" loop="loop" src="https://github.com/user-attachments/assets/bd47f27d-9aae-4291-96b1-75f8b6b39cad"></video>
 
 ## Installation
 
@@ -35,7 +35,7 @@ cd openpaws/software/ROS1
 source devel/setup.bash  # Load ROS environment variables
 roslaunch openpaws_config gazebo.launch
 ```
-<img src="readme/gazebo.png" width="600px">
+<img src="readme/gazebo.png" width="500px">
 
 ## Step 3: Start Teleoperation (New Terminal)
 
