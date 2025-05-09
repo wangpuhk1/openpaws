@@ -61,7 +61,7 @@ Create a hardware interface for your actuators that is able to do the following:
 
 Join our community to share ideas, ask questions, and collaborate:  
 
-- [Discord Channel]
+- [Discord Channel](https://discord.gg/qjGJGtSM)
 - [QQ:760101443]
 
 ## License
