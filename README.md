@@ -35,8 +35,7 @@ cd openpaws/software/ROS1
 source devel/setup.bash  # Load ROS environment variables
 roslaunch openpaws_config gazebo.launch
 ```
-
-![3386aa39acff4b17c57e31fe2d3e5e8c](https://github.com/user-attachments/assets/9773d29b-20ca-413f-8ad3-1bb63ef0e7b7)
+<img src="https://github.com/wangpuhk1/openpaws/blob/main/readme/gazebo.png" width="300px">
 
 ## Step 3: Start Teleoperation (New Terminal)
 
