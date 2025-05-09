@@ -8,7 +8,7 @@ OpenPaw is a project created by and for the open-source community. We believe in
 
 ## Leg Assembled
 
-<video width="300" height="200" autoplay="true" src="https://github.com/user-attachments/assets/0310e957-bd4b-4fca-84c4-60ede9ea3b31"></video>
+<video width="300" height="200" autoplay="true" src="https://github.com/wangpuhk1/openpaws/blob/main/readme/leg.mp4"></video>
 
 ## Installation
 
