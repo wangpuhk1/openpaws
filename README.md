@@ -63,7 +63,7 @@ Join our community to share ideas, ask questions, and collaborate:
 
 - [Discord Channel](https://discord.gg/qjGJGtSM)
 - [wechat/微信]
-<img src="https://github.com/user-attachments/assets/97889b2a-1614-4917-bfae-5bbfe15ed46b" width="200px">
+<img src="https://github.com/user-attachments/assets/97889b2a-1614-4917-bfae-5bbfe15ed46b" width="300px">
 
 ## License
 
