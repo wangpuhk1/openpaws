@@ -64,7 +64,7 @@ Join our community to share ideas, ask questions, and collaborate:
 - [Discord Channel](https://discord.gg/qjGJGtSM)
 - [wechat/微信]
 
-<img src="https://github.com/user-attachments/assets/13317910-a93c-449a-b73e-e3413afb7c52" width="300px">
+<img src="https://github.com/wangpuhk1/openpaws/blob/main/readme/code.jpg" width="300px">
 
 ## License
 
