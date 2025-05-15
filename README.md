@@ -61,7 +61,11 @@ sudo apt install -y docker-ce docker-ce-cli containerd.io
 **1. Clone Repository**
 
 ```bash
+# Clone from GitHub (primary)
 git clone https://github.com/wangpuhk1/openpaws.git
+
+# Alternative mirror (if GitHub is inaccessible) 
+git clone https://gitcode.com/wangpuhk1/openpaws.git
 ```
 
 **2. Pull and Configure Docker Image**
