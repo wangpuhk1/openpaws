@@ -12,38 +12,130 @@ OpenPaw is a project created by and for the open-source community. We believe in
 
 ## Installation
 
-## Step 1: Build ROS Workspace
+## Step 1: WSL2 Configuration (Windows 10/11 Only)
+
+(Skip this step if you are already on native Ubuntu/Linux.)
+
+**1. Enable Virtualization**
+
+- Open Task Manager → ​**​Performance​**​ tab → Verify ​**​Virtualization​**​ is enabled.
+- If disabled, enable it in BIOS/UEFI settings.
+
+​**2. ​Install WSL2**
 
 ```bash
-# Clone repository
+# Powershell
+wsl --install -d Ubuntu-22.04  # Install Ubuntu distribution
+wsl --set-default-version 2    # Set WSL2 as default
+wsl --update                   # Update WSL kernel
+```
+
+​**​3. Install X Server for GUI**
+
+- Download ​**​VcXsrv​**​ or ​**​GWSL​**​ from [sourceforge.net](https://sourceforge.net/projects/xlauncher/)
+
+- Launch XLaunch and select ​**​"Disable access control"​**​ to allow Docker GUI display
+
+## Step 2: Docker Installation
+
+​**1. ​Install Docker Desktop for Windows**
+
+- Download from [Docker Hub](https://hub.docker.com/editions/community/docker-ce-desktop-windows).
+- Enable ​**​WSL2 Integration​**​ in Docker Desktop settings.
+
+​**2. ​Configure Docker in WSL2 (Ubuntu Terminal)**
+
+```bash
+# Add Docker's official GPG key andrepository
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+# Install Docker
+sudo apt update
+sudo apt install -y docker-ce docker-ce-cli containerd.io
+```
+
+## Step 3: Project Setup and Docker Execution
+
+**1. Clone Repository**
+
+```bash
 git clone https://github.com/wangpuhk1/openpaws.git
+```
 
+**2. Pull and Configure Docker Image**
+
+```bash
+docker pull docker.1ms.run/fishros2/ros:melodic-desktop-full
+docker tag docker.1ms.run/fishros2/ros:melodic-desktop-full openpaws:v2.2
+```
+
+**​3. Launch Container with GUI Support**
+
+```bash
+docker run -it --name openpaws \
+  --net=host \                  # Use host network (firewall may block)
+  --privileged \                # Grant device access (use cautiously)
+  -v /tmp/.X11-unix:/tmp/.X11-unix \          # Share X11 socket[3,7](@ref)
+  -e DISPLAY=host.docker.internal:0.0 \       # Windows X Server address
+  -e GDK_SCALE=1.5 \            # HiDPI scaling for high-res screens
+  -e GDK_DPI_SCALE=0.8 \  
+  -v "$(pwd)/openpaws:/root/openpaws" \  
+  openpaws:v2.2
+```
+
+
+
+## Step 4: ROS Workspace Build (Inside Container)​
+
+**1. ​Install Dependencies**
+
+```bash
+apt-get update && apt install ca-certificates
+rosdep install --from-paths src --ignore-src -r -y
+```
+
+**2. Compile ROS Packages** 
+
+```bash
+cd /root/openpaws/software/ROS1
 source /opt/ros/melodic/setup.bash
-
-# Navigate to ROS workspace
-cd openpaws/software/ROS1
-
-# Initialize and build packages
 catkin_make
 ```
 
-## Step 2: Launch Gazebo Simulation
+## Step 5: Launch Gazebo Simulation (Inside Container)​
 
 ```bash
-# Source environment and launch simulation
-cd openpaws/software/ROS1
+cd /root/openpaws/software/ROS1
+
 source devel/setup.bash  # Load ROS environment variables
+
 roslaunch openpaws_config gazebo.launch
 ```
+
 <img src="readme/gazebo.png" width="500px">
 
-## Step 3: Start Teleoperation (New Terminal)
+## Step 6: Start Teleoperation
 
 ```bash
-# In separate terminal session
-cd openpaws/software/ROS1
-source devel/setup.bash  # Re-source environment
-roslaunch openpaws_teleop teleop.launch  # Activate control interface
+# --------------------------------
+# On Host Machine (Windows/WSL2, Ubuntu)
+# --------------------------------
+# 1. Open a new terminal window in WSL2/Ubuntu
+# 2. Attach to the running Docker container
+
+docker exec -it openpaws /bin/bash
+
+# --------------------------------
+# Inside Docker Container
+# --------------------------------
+# Navigate to ROS workspace and initialize environment
+
+cd /root/openpaws/software/ROS1
+source devel/setup.bash
+# Launch teleoperation interface with GUI support
+roslaunch openpaws_teleop teleop.launch
 ```
 
 ## Step 4: Hardware Integration
