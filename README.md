@@ -100,6 +100,7 @@ docker run -it --name openpaws \
 
 ```bash
 apt-get update && apt install ca-certificates
+cd /root/openpaws/software/ROS1
 rosdep install --from-paths src --ignore-src -r -y
 ```
 
