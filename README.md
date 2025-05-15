@@ -32,7 +32,7 @@ wsl --update                   # Update WSL kernel
 
 ​**​3. Install X Server for GUI**
 
-- Download ​**​VcXsrv​**​ or ​**​GWSL​**​ from [sourceforge.net](https://sourceforge.net/projects/xlauncher/)
+- Download ​**​XLaunch**​ from [sourceforge.net](https://sourceforge.net/projects/xlauncher/)
 
 - Launch XLaunch and select ​**​"Disable access control"​**​ to allow Docker GUI display
 
@@ -74,6 +74,11 @@ docker tag docker.1ms.run/fishros2/ros:melodic-desktop-full openpaws:v2.2
 **​3. Launch Container with GUI Support**
 
 ```bash
+# On Host Machine (Windows/WSL2, Ubuntu), 
+# Enable GUI Support
+xhost +
+
+# Launch Container
 docker run -it --name openpaws \
   --net=host \                  # Use host network (firewall may block)
   --privileged \                # Grant device access (use cautiously)
@@ -84,8 +89,6 @@ docker run -it --name openpaws \
   -v "$(pwd)/openpaws:/root/openpaws" \  
   openpaws:v2.2
 ```
-
-
 
 ## Step 4: ROS Workspace Build (Inside Container)​
 
