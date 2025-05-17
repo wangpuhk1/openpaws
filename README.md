@@ -146,7 +146,7 @@ source devel/setup.bash
 roslaunch openpaws_teleop teleop.launch
 ```
 
-## Step 4: Hardware Integration
+## Step 7: Hardware Integration
 
 Create a hardware interface for your actuators that is able to do the following:
 
