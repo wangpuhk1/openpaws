@@ -34,7 +34,7 @@ wsl --update                   # Update WSL kernel
 
 - Download ​**​XLaunch**​ from [sourceforge.net](https://sourceforge.net/projects/xlauncher/)
 
-- Launch XLaunch and select ​**​"Disable access control"​**​ to allow Docker GUI display
+- Launch XLaunch and select ​**​"Disable access control"​**​ to allow Docker GUI display 
 
 ## Step 2: Docker Installation
 
