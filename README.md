@@ -10,6 +10,8 @@ OpenPaw is a project created by and for the open-source community. We believe in
 
 <video width="600" height="400" autoplay="true" loop="loop" src="https://github.com/user-attachments/assets/bd47f27d-9aae-4291-96b1-75f8b6b39cad"></video>
 
+For instructions on how to assemble the robot, please refer to the OpenPaws.SLDASM file located in the 3D_model/solidworks folder. This is the assembly file for SolidWorks, so open it with SolidWorks software.
+
 ## Installation
 
 ## Step 1: WSL2 Configuration (Windows 10/11 Only)
